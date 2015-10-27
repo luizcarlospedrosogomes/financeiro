@@ -13,13 +13,9 @@ Class Usuario extends CI_Model
 	//var_dump($query);
    if($query->num_rows() == 1)
    {
-     if ($this->input->post('email') == 'admin@admin.com')
-		return 1;
-	else
-		return $query;
+     return $query;
    }
-   else
-	   return 3;
+ 
  }
  
  

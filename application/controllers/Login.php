@@ -18,25 +18,24 @@ class Login extends CI_Controller {
         $this->load->model('Usuario', 'usuario');
         $query = $this->usuario->login();
 		
-		
-		///$row = $query->row();
-		
         if ($this->form_validation->run() == FALSE) {
 	            $this->load->view('login_view');
         } else {
-	           if ($query == 1) { // VERIFICA LOGIN E SENHA
+			   	$qr = $query->row();
+				
+	           if ($qr->email =='admin@admin.com') { // VERIFICA LOGIN E SENHA
                 $data = array(
-                    'username' => $this->input->post('email'),
-					//'id'	   
-                    'logged' => true
+                    'username' => $qr->nome,
+					'id'	   => $qr->id,
+                    'logged' 	=> true
                 );
                 $this->session->set_userdata($data);
                 redirect('admin');
-            } elseif(isset($row)) {
+            } elseif($qr->status == 1) {
                 $data = array(
-                    'username' => $this->nome,
-					'id'	   => $this->id,
-					'email'	   => $this->email,
+                    'username' => $qr->nome,
+					'id'	   => $qr->id,
+					'email'	   => $qr->email,
 					'logged'   => true
                 );
                 $this->session->set_userdata($data);

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Financiro | <usuario></title>
+        <title>Financiro | <?php echo $usuario;?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/.css');?>">
     </head>
 	
-    <body>]
+    <body>
+	<?php //var_dump($usuario);?>
 		<h1>Financeiro</h1>
 		<div id="logout">
 			<a href="login/logout">Sair</a>
