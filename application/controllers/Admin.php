@@ -27,7 +27,6 @@ class Admin extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 	           // echo "Erro ao insirir dados	";
         } else {
-			echo $nome.$email.$senha;
 			$this->usuario->inserir($nome, $email, $senha);
 			redirect('admin');
 		}
