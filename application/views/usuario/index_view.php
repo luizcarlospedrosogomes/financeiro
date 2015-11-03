@@ -15,48 +15,96 @@
 		
 		<h2>Cadastrar Receita</h2>
 		<div id="form_cadastrar_receita">
-			<form method="post" action="usuario/receita">
+			<form method="post" action="receita/cadastrar">
 				<label for="receita">Receita</label>
 				<input type="text" name="receita" id="receita"/>
 				<label for="valor">Valor</label>
 				<input type="text" name="valor" id="valor"/>
 				<label for="data">Data</label>
 				<input type="text" name="data" id="data">
-				<select>Categoria
+				<select name="categoria">Categoria
 					<?php
 					foreach ($categoria_receita->result_array() as $cat)
 					{?>
 					
-					<option value="<?php echo $cat['id'];?>"><?php echo $cat['categoria'];?></option>
+					<option value="<?php echo $cat['id'];?>" name="categoria"><?php echo $cat['categoria'];?></option>
 					<?php }?>
 				</select>
 				<input type="button" value="Adicionar Categoria"/>
 				<button type="submit" value="Cadastrar">Cadastrar</button>
-				<input type="hidden" value="<?php echo $usuario_email ;?>"/>
+				<input type="hidden" value="<?php echo $usuario_id;?>" name="usuario"/>
 			</form>
+			<table  style="width:40%" id="tab_cat_receita">
+			<caption>Receita Cadastradas</caption>
+					<tr>
+						<th>Data</th>
+						<th>Receita</th>
+						<th>Valor(R$)</th>
+						<th>Categoria</th>
+						<th>Editar</th>	
+						<th>Excluir</th>	 
+					</tr>
+					
+			<?php
+				foreach ($listar_receita->result_array() as $receita_list)
+				{?>
+					<tr>
+						<td><?php echo $receita_list['data'];?></td>
+						<td><?php echo $receita_list['categoria'];?></td>
+						<td><?php echo $receita_list['valor'];?></td>
+						<td><?php echo $receita_list['categoria'];?></td>
+						<td><a href="categoriaCtrl/editar/<?php echo $receita_list['id'];?>">Editar</a></td>
+						<td><a href="categoriaCtrl/excluir/<?php echo $receita_list['id'];?>">Excluir</a></td>
+					</tr>
+			<?php }?>
+					
+					
+			</table>
 		</div>
 		
 		<h3>Cadastrar Receita/Categoria</h2>
-		<div id="form_cadastrar_receita">
-			<form method="post" action="usuario/categoriaReceita">
+		<div id="categoria_receita">
+			<form method="post" action="categoriaCtrl/categoriaReceita">
 				<label for="cat_receita">Categoria Receita</label>
 				<input type="text" name="cat_receita" id="receita"/>
 			    <button type="submit" value="Cadastrar Categoria Receita">Cadastrar Categoria Receita</button>
-				<input type="hidden" name="usuario" value="<?php echo $usuario_email ;?>"/>
+				<input type="hidden" name="usuario" value="<?php echo $usuario_id;?>"/>
 				<input type="hidden" name="tipo" value="1"/>
 			</form>
-		</div>
+			
+						
+			<table  style="width:40%" id="tab_cat_receita">
+			<caption>Categoria Receita Cadastradas</caption>
+					<tr>
+						<th>Categoria</th>
+						<th>Editar</th>	
+						<th>Excluir</th>	 
+					</tr>
+					
+			<?php
+				foreach ($categoria_receita->result_array() as $cat_receita_list)
+				{?>
+					<tr>
+						<td><?php echo $cat_receita_list['categoria'];?></td>
+						<td><a href="categoria/editar/<?php echo $cat_receita_list['id'];?>">Editar</a></td>
+						<td><a href="categoria/excluir/<?php echo $cat_receita_list['id'];?>">Excluir</a></td>
+					</tr>
+			<?php }?>
+					
+					
+			</table>
+				</div>
 		
 		<h2>Cadastrar Despesa</h2>	
 		<div id="form_cadastrar_despesa">
-			<form method="post" action="usuario/despesa">
+			<form method="post" action="despesa/cadastrar">
 				<label for="despesa">Despesa</label>
 				<input type="text" name="despesa" id="despesa"/>
 				<label for="valor">Valor</label>
 				<input type="text" name="valor" id="valor"/>
 				<label for="data">Data</label>
 				<input type="text" name="data" id="data">
-				<select>Categoria
+				<select name="categoria">Categoria
 					<?php
 					foreach ($categoria_despesa->result_array() as $cat_des)
 					{?>
@@ -66,18 +114,65 @@
 				</select>
 				<input type="button" value="Adicionar Categoria"/>
 				<button type="submit" value="Cadastrar">Cadastrar</button>
-				<input type="hidden" value="<?php echo $usuario_email;?>"/>
+				<input type="hidden" value="<?php echo $usuario_id;?>" name="usuario"/>
 			</form>
+			<table  style="width:40%" id="tab_cat_receita">
+			<caption>Depesas Cadastradas</caption>
+					<tr>
+						<th>Data</th>
+						<th>Receita</th>
+						<th>Valor(R$)</th>
+						<th>Categoria</th>
+						<th>Editar</th>	
+						<th>Excluir</th>	 
+					</tr>
+					
+			<?php
+				foreach ($listar_despesa->result_array() as $despesas_list)
+				{?> 
+					
+					<tr>
+						<td><?php echo $receita_list['data'];?></td>
+						<td><?php echo $receita_list['categoria'];?></td>
+						<td><?php echo $receita_list['valor'];?></td>
+						<td><?php echo $receita_list['categoria'];?></td>
+						<td><a href="categoriaCtrl/editar/<?php echo $receita_list['id'];?>">Editar</a></td>
+						<td><a href="categoriaCtrl/excluir/<?php echo $receita_list['id'];?>">Excluir</a></td>
+					</tr>
+			<?php }?>
+					
+					
+			</table>
 		</div>
 		<h3>Cadastrar Despesa/Categoria</h2>
 		<div id="form_cadastrar_receita">
-			<form method="post" action="usuario/categoriaDespesa">
+			<form method="post" action="categoriaCtrl/categoriaDespesa">
 				<label for="cat_receita">Categoria Despesa</label>
 				<input type="text" name="cat_receita" id="receita"/>
 			    <button type="submit" value="Cadastrar Categoria Receita">Cadastrar Categoria Despesa</button>
-				<input type="hidden" name="usuario" value="<?php echo $usuario_email ;?>"/>
+				<input type="hidden" name="usuario" value="<?php echo $usuario_id;?>"/>
 				<input type="hidden" name="tipo" value="2"/>
 			</form>
+			<table  style="width:40%" id="tab_cat_despesa">
+			<caption>Categoria Receita Cadastradas</caption>
+					<tr>
+						<th>Categoria</th>
+						<th>Editar</th>	
+						<th>Excluir</th>	 
+					</tr>
+					
+			<?php
+				foreach ($categoria_despesa->result_array() as $cat_des_list)
+				{?>
+					<tr>
+						<td><?php echo $cat_des_list['categoria'];?></td>
+						<td><a href="categoria/editar/<?php echo $cat_des_list['id'];?>">Editar</a></td>
+						<td><a href="categoria/excluir/<?php echo $cat_des_list['id'];?>">Excluir</a></td>
+					</tr>
+			<?php }?>
+					
+					
+			</table>
 		</div>
 		
 		<h3>Receita/Despesas</h3>

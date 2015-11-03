@@ -4,13 +4,13 @@ Class Categoria extends CI_Model
 {
  function listarReceita($usuario){
 	 
-	 $query = $this->db->query("SELECT * FROM categoria WHERE tipo =1 ORDER BY categoria");
+	 $query = $this->db->query("SELECT * FROM categoria WHERE tipo = 1 and usuario = ".$usuario." ORDER BY categoria");
 	 return $query;
  }
  
-  function listarDespesa$usuario){
+  function listarDespesa($usuario){
 	 
-	 $query = $this->db->query("SELECT * FROM categoria WHERE tipo =2 ORDER BY categoria");
+	 $query = $this->db->query("SELECT * FROM categoria WHERE tipo = 2 and usuario = ".$usuario." ORDER BY categoria");
 	 return $query;
  }
  
@@ -26,5 +26,10 @@ Class Categoria extends CI_Model
 	// echo $this->db->affected_rows();
 	 
  }
+ 
+  function excluir($id){
+	 $this->db->delete('categoria', array('id' => $id)); 
+ }
+  
 }
  ?>

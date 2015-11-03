@@ -19,7 +19,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 		
 		//carregar model
-		$this->load->model('Usuario', 'usuario');
+		$this->load->model('usuarioModel', 'usuario');
 		
 		$nome  = $this->input->post('nome');
 		$email = $this->input->post('email');

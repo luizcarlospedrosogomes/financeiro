@@ -5,49 +5,22 @@ class Usuario extends CI_Controller {
     function __construct() {
         parent::__construct();
 		$this->load->model('categoria', 'categoria');
-        //$this->usuario->logado();
+		$this->load->model('usuarioModel', 'usuario');
+		$this->load->model('receitaModel', 'receita');
+		$this->load->model('despesaModel', 'despesa');
+        $this->usuario->logado();
     }
 	
 	function index(){
-		$data['categoria_receita']          = $this->categoria->listarReceita($this->session->userdata('username'););
-		$data['categoria_despesa']          = $this->categoria->listarDespesa($this->session->userdata('username'););
-		$data['usuario']        = $this->session->userdata('username');
-		$data['usaurio_id']     = $this->session->userdata('id');
-		$data['usuario_email']  = $this->session->userdata('email');
+		$data['listar_receita']             = $this->receita->listar($this->session->userdata('id_usuario'));
+		$data['listar_despesa']             = $this->despesa->listar($this->session->userdata('id_usuario'));
+		$data['categoria_receita']          = $this->categoria->listarReceita($this->session->userdata('id_usuario'));
+		$data['categoria_despesa']          = $this->categoria->listarDespesa($this->session->userdata('id_usuario'));
+		$data['usuario']       				= $this->session->userdata('username');
+		$data['usuario_id']     			= $this->session->userdata('id_usuario');
+		$data['usuario_email']  			= $this->session->userdata('email');
 		$this->load->view('usuario/index_view', $data);
 	}
 	
-	function categoriaReceita(){
-		//post categoria receita
-		$categoria  = $this->input->post('cat_receita');
-		$usuario = $this->input->post('usuario');
-		$tipo = $this->input->post('tipo');
-		
-		//validar form
-		if($categoria != ''){
-			$this->categoria->inserir($categoria, $tipo, $usuario);
-			redirect('usuario');
-		}else
-		{
-			//tratar
-		}
-	}
-	
-	function categoriaDespesa(){
-		//post categoria receita
-		$categoria  = $this->input->post('cat_receita');
-		$usuario = $this->input->post('usuario');
-		$tipo = $this->input->post('tipo');
-		
-		//validar form
-		if($categoria != ''){
-			$this->categoria->inserir($categoria, $tipo, $usuario);
-			redirect('usuario');
-		}else
-		{
-			//tratar
-		}
-			
-	}
 }
 ?>

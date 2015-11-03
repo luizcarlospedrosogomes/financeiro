@@ -1,23 +1,20 @@
 <?php
 
-Class Usuario extends CI_Model
+Class UsuarioModel extends CI_Model
 {
  function login()
  {
-   
    $this ->db->where('email', $this->input->post('email'));
    $this ->db->where('senha', $this->input->post('senha'));
    $this ->db->limit(1);
 
    $query = $this->db->get('usuario');
-	//var_dump($query);
    if($query->num_rows() == 1)
    {
      return $query;
    }
  
  }
- 
  
  function logado(){
 	$logged = $this->session->userdata('logged');

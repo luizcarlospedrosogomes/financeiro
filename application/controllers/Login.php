@@ -33,10 +33,10 @@ class Login extends CI_Controller {
                 redirect('admin');
             } elseif($qr->status == 1) {
                 $data = array(
-                    'username' => $qr->nome,
-					'id'	   => $qr->id,
-					'email'	   => $qr->email,
-					'logged'   => true
+                    'username'          => $qr->nome,
+					'id_usuario'	    => $qr->id,
+					'email'	            => $qr->email,
+					'logged'            => true
                 );
                 $this->session->set_userdata($data);
                 redirect('usuario');
