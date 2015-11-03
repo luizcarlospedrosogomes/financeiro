@@ -52,7 +52,7 @@ class Admin extends CI_Controller {
 		$email  = $this->input->post('email');
 		$senha  = $this->input->post('senha');		
 		$status = $this->input->post('status');
-		$this->usuario->update($id, $nome, $email, $senha, $status)
+		$this->usuario->update($id, $nome, $email, $senha, $status);
 	}
 	
 }			
