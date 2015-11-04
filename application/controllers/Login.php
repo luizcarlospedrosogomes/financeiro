@@ -4,6 +4,7 @@ class Login extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+         $this->load->model('UsuarioModel', 'usuario');
     }
 
     function index() {
@@ -15,7 +16,7 @@ class Login extends CI_Controller {
 
 
         // MODELO 
-        $this->load->model('Usuario', 'usuario');
+       
         $query = $this->usuario->login();
 		
         if ($this->form_validation->run() == FALSE) {
