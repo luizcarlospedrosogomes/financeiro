@@ -1,6 +1,6 @@
 <?php
 
-Class Categoria extends CI_Model
+Class CategoriaModel extends CI_Model
 {
  function listarReceita($usuario){
 	 
@@ -25,6 +25,19 @@ Class Categoria extends CI_Model
 	 $this->db->insert('categoria', $dados); 
 	// echo $this->db->affected_rows();
 	 
+ }
+ 
+  function buscar($id){
+    $query = $this->db->query("SELECT * FROM categoria WHERE id = ".$id);
+    return $query;
+ }
+ 
+  function atualizar($id, $categoria){
+	$dados = array(
+				'categoria'   => $categoria
+	 );
+	 $this->db->where('id', $id);
+	 $this->db->update('categoria', $dados);
  }
  
   function excluir($id){

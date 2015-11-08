@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Financiro | <?php echo $usuario;?></title>
+        <title>Financeiro | <?php echo $usuario;?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/.css');?>">
     </head>
@@ -26,8 +26,7 @@
 					<?php
 					foreach ($categoria_receita->result_array() as $cat)
 					{?>
-					
-					<option value="<?php echo $cat['id'];?>" name="categoria"><?php echo $cat['categoria'];?></option>
+						<option value="<?php echo $cat['id'];?>" name="categoria"><?php echo $cat['categoria'];?></option>
 					<?php }?>
 				</select>
 				<input type="button" value="Adicionar Categoria"/>
@@ -50,11 +49,11 @@
 				{?>
 					<tr>
 						<td><?php echo $receita_list['data'];?></td>
-						<td><?php echo $receita_list['categoria'];?></td>
+						<td><?php echo $receita_list['receita'];?></td>
 						<td><?php echo $receita_list['valor'];?></td>
 						<td><?php echo $receita_list['categoria'];?></td>
-						<td><a href="categoriaCtrl/editar/<?php echo $receita_list['id'];?>">Editar</a></td>
-						<td><a href="categoriaCtrl/excluir/<?php echo $receita_list['id'];?>">Excluir</a></td>
+						<td><a href="receita/editar/<?php echo $receita_list['id'];?>">Editar</a></td>
+						<td><a href="receita/excluir/<?php echo $receita_list['id'];?>">Excluir</a></td>
 					</tr>
 			<?php }?>
 					
@@ -64,7 +63,7 @@
 		
 		<h3>Cadastrar Receita/Categoria</h2>
 		<div id="categoria_receita">
-			<form method="post" action="categoriaCtrl/categoriaReceita">
+			<form method="post" action="categoria/categoriaReceita">
 				<label for="cat_receita">Categoria Receita</label>
 				<input type="text" name="cat_receita" id="receita"/>
 			    <button type="submit" value="Cadastrar Categoria Receita">Cadastrar Categoria Receita</button>
@@ -108,8 +107,7 @@
 					<?php
 					foreach ($categoria_despesa->result_array() as $cat_des)
 					{?>
-					
-					<option value="<?php echo $cat_des['id'];?>"><?php echo $cat_des['categoria'];?></option>
+						<option value="<?php echo $cat_des['id'];?>"><?php echo $cat_des['categoria'];?></option>
 					<?php }?>
 				</select>
 				<input type="button" value="Adicionar Categoria"/>
@@ -125,28 +123,25 @@
 						<th>Categoria</th>
 						<th>Editar</th>	
 						<th>Excluir</th>	 
-					</tr>
-					
+					</tr>	
 			<?php
 				foreach ($listar_despesa->result_array() as $despesas_list)
 				{?> 
 					
 					<tr>
-						<td><?php echo $receita_list['data'];?></td>
-						<td><?php echo $receita_list['categoria'];?></td>
-						<td><?php echo $receita_list['valor'];?></td>
-						<td><?php echo $receita_list['categoria'];?></td>
-						<td><a href="categoriaCtrl/editar/<?php echo $receita_list['id'];?>">Editar</a></td>
-						<td><a href="categoriaCtrl/excluir/<?php echo $receita_list['id'];?>">Excluir</a></td>
+						<td><?php echo $despesas_list['data'];?></td>
+						<td><?php echo $despesas_list['categoria'];?></td>
+						<td><?php echo $despesas_list['valor'];?></td>
+						<td><?php echo $despesas_list['categoria'];?></td>
+						<td><a href="despesa/editar/<?php echo $despesas_list['id'];?>">Editar</a></td>
+						<td><a href="despesa/excluir/<?php echo $despesas_list['id'];?>">Excluir</a></td>
 					</tr>
-			<?php }?>
-					
-					
+			<?php }?>				
 			</table>
 		</div>
 		<h3>Cadastrar Despesa/Categoria</h2>
 		<div id="form_cadastrar_receita">
-			<form method="post" action="categoriaCtrl/categoriaDespesa">
+			<form method="post" action="categoria/categoriaDespesa">
 				<label for="cat_receita">Categoria Despesa</label>
 				<input type="text" name="cat_receita" id="receita"/>
 			    <button type="submit" value="Cadastrar Categoria Receita">Cadastrar Categoria Despesa</button>
@@ -160,7 +155,6 @@
 						<th>Editar</th>	
 						<th>Excluir</th>	 
 					</tr>
-					
 			<?php
 				foreach ($categoria_despesa->result_array() as $cat_des_list)
 				{?>
@@ -169,15 +163,9 @@
 						<td><a href="categoria/editar/<?php echo $cat_des_list['id'];?>">Editar</a></td>
 						<td><a href="categoria/excluir/<?php echo $cat_des_list['id'];?>">Excluir</a></td>
 					</tr>
-			<?php }?>
-					
-					
+			<?php }?>					
 			</table>
 		</div>
-		
-		<h3>Receita/Despesas</h3>
-		<div id="listar_receita_despesas">
-			
-		</div>
+
     </body>
 </html>

@@ -6,7 +6,7 @@ class Admin extends CI_Controller {
     
     function __construct() {
         parent::__construct();
-        $this->load->model('usuario', 'usuario');
+        $this->load->model('UsuarioModel', 'usuario');
         $this->usuario->logado();
     }
     
@@ -18,7 +18,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('senha', 'senha', 'required');
         $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 		
-<<<<<<< HEAD
+
 		//carregar model
 		$this->load->model('usuarioModel', 'usuario');
 		
@@ -26,12 +26,12 @@ class Admin extends CI_Controller {
 		$email = $this->input->post('email');
 		$senha = $this->input->post('senha');
 		if ($this->form_validation->run() == FALSE) {
-=======
+
 	$nome  = $this->input->post('nome');
 	$email = $this->input->post('email');
 	$senha = $this->input->post('senha');
 	if ($this->form_validation->run() == FALSE) {
->>>>>>> origin/master
+
 	           // echo "Erro ao insirir dados	";
         } else {
 		$this->usuario->inserir($nome, $email, $senha);
@@ -42,6 +42,7 @@ class Admin extends CI_Controller {
 	$this->load->view('admin_view', $data);
         
     }
+	}
 	public function excluir(){
 		
 		$this->load->model('Usuario', 'usuario');
@@ -49,20 +50,23 @@ class Admin extends CI_Controller {
 		$this->usuario->excluir($id);
 		redirect('admin');
 	}
-	public function buscar(){
-		$id    = $this->uri->segment(3);
-		$data['query'] = $this->usuario->buscar($id);
-		$this->load->view('admin-editar_view', $data);
-	}
 	
 	public function editar(){
-		$this->load->model('Usuario', 'usuario');
-		$id     = $this->input->post('id');
-		$nome   = $this->input->post('nome');
-		$email  = $this->input->post('email');
-		$senha  = $this->input->post('senha');		
-		$status = $this->input->post('status');
-		$this->usuario->update($id, $nome, $email, $senha, $status);
+		if(!$this->input->post()){
+		$id         = $this->uri->segment(3);
+		$query      = $this->usuario->buscar($id);
+		$data['qr'] = $query->row();
+		$this->load->view('admin_editar_view', $data);
+		}
+		if($this->input->post()){
+			$id     = $this->input->post('id');
+			$nome   = $this->input->post('nome');
+			$email  = $this->input->post('email');
+			$senha  = $this->input->post('senha');		
+			$status = $this->input->post('status');
+		    $this->usuario->atualizar($id, $nome, $email, $senha, $status);
+		}
+		
 	}
 	
 }			

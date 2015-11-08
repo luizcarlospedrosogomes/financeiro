@@ -38,11 +38,27 @@ Class UsuarioModel extends CI_Model
 	 );
 	 
 	 $this->db->insert('usuario', $dados); 
-	 echo $this->db->affected_rows();
+	 //echo $this->db->affected_rows();
+ }
+ 
+ function buscar($id){
+    $query = $this->db->query("SELECT * FROM usuario WHERE id = ".$id);
+    return $query;
  }
  
  function excluir($id){
 	 $this->db->delete('usuario', array('id' => $id)); 
+ }
+ 
+ function atualizar($id, $nome, $email, $senha, $status){
+	$dados = array(
+				'nome'   => $nome,
+				'email'  => $email,
+				'senha'  => $senha,
+				'status' => $status
+	 );
+	 $this->db->where('id', $id);
+	 $this->db->update('usuario', $dados);
  }
 }
 ?>

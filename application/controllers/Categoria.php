@@ -1,10 +1,10 @@
 <?php
-class CategoriaCtrl extends CI_Controller {
+class Categoria extends CI_Controller {
 	
    function __construct() {
         parent::__construct();
 		$this->load->model('usuarioModel', 'usuario');
-		$this->load->model('categoria', 'categoria');
+		$this->load->model('categoriaModel', 'categoria');
         $this->usuario->logado();
     }
 	
@@ -33,14 +33,31 @@ class CategoriaCtrl extends CI_Controller {
 		//validar form
 		if($categoria != ''){
 			$this->categoria->inserir($categoria, $tipo, $usuario);
-			redirect('usuario');
+			
+			//redirect('usuario', 'refresh:3');
 		}else
 		{
 			//tratar
 		}
 			
 	}
-	
+
+	public function editar(){
+        if(!$this->input->post()){
+			$id         = $this->uri->segment(3);
+			$query      = $this->categoria->buscar($id);
+			$data['qr'] = $query->row();
+			$this->load->view('cat_editar_view', $data);
+		}
+		if($this->input->post()){
+			$id        = $this->input->post('id');
+			$categoria = $this->input->post('categoria');
+		    $this->categoria->atualizar($id,  $categoria);
+			$data['msg'] = "Categoria ".$categoria." editada com sucesso";
+			$this->load->view('sucesso',$data);
+		}
+		
+	}
 	public function excluir(){
 		
 		$id = $this->uri->segment(3);

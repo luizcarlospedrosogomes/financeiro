@@ -4,8 +4,8 @@ class Login extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+		$this->load->model('UsuarioModel', 'usuario');
     }
-
     function index() {
 		  // VALIDATION RULES
         $this->load->library('form_validation');
@@ -13,9 +13,6 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('senha', 'senha', 'required');
         $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 
-
-        // MODELO 
-        $this->load->model('Usuario', 'usuario');
         $query = $this->usuario->login();
 		
         if ($this->form_validation->run() == FALSE) {
