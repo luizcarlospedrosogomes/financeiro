@@ -16,13 +16,6 @@ Class UsuarioModel extends CI_Model
  
  }
  
- function logado(){
-	$logged = $this->session->userdata('logged');
-        if (!isset($logged) || $logged != true) {
-            echo 'Voce nao tem permissao para entrar nessa pagina. <a href="#">Efetuar Login</a>';
-            die();
-        }
- }
  function listar(){
 	 
 	 $query = $this->db->query("SELECT * FROM usuario WHERE id >2 order by id");
@@ -60,5 +53,15 @@ Class UsuarioModel extends CI_Model
 	 $this->db->where('id', $id);
 	 $this->db->update('usuario', $dados);
  }
+ 
+ function logado(){
+	$logged = $this->session->userdata('logged');
+        if (!isset($logged) || $logged != true) {
+            echo 'Voce nao tem permissao para entrar nessa pagina. <a href="/">Efetuar Login</a>';
+            die();
+        }
+    }
+	
+
 }
 ?>

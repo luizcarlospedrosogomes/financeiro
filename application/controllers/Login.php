@@ -4,11 +4,9 @@ class Login extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-<<<<<<< HEAD
 		$this->load->model('UsuarioModel', 'usuario');
-=======
-         $this->load->model('UsuarioModel', 'usuario');
->>>>>>> origin/master
+        $this->load->model('UsuarioModel', 'usuario');
+
     }
     function index() {
 		  // VALIDATION RULES
@@ -17,24 +15,19 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('senha', 'senha', 'required');
         $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 
-<<<<<<< HEAD
-=======
-
-        // MODELO 
-       
->>>>>>> origin/master
         $query = $this->usuario->login();
 		
-        if ($this->form_validation->run() == FALSE) {
+        if (($this->form_validation->run() == FALSE) || ($query == NULL)) {
 	            $this->load->view('login_view');
         } else {
 			   	$qr = $query->row();
 				
 	           if ($qr->email =='admin@admin.com') { // VERIFICA LOGIN E SENHA
                 $data = array(
-                    'username' => $qr->nome,
-					'id'	   => $qr->id,
-                    'logged' 	=> true
+                    'username'   => $qr->nome,
+					'id_usuario' => $qr->id,
+					'email'	     => $qr->email,
+                    'logged' 	 => true
                 );
                 $this->session->set_userdata($data);
                 redirect('admin');

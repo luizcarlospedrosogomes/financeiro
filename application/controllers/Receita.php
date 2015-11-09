@@ -6,7 +6,7 @@ class Receita extends CI_Controller {
 		$this->load->model('usuarioModel', 'usuario');
 		$this->load->model('receitaModel', 'receita');
 		$this->load->model('categoriaModel', 'categoria');
-        $this->usuario->logado();
+        $this->login->logado();
     }
 	
 	function cadastrar(){

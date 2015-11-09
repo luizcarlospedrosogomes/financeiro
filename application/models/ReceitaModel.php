@@ -15,7 +15,7 @@ Class ReceitaModel extends CI_Model{
 	// echo $this->db->affected_rows();
 	 }
  function listar($usuario){
-		$query = $this->db->query("SELECT r.valor, r.receita, r.data, r.id, c.categoria FROM receita r INNER JOIN categoria c ON r.categoria = c.id WHERE  c.tipo = 1 AND r.usuario = ".$usuario." GROUP BY r.id ORDER BY r.data");
+		$query = $this->db->query("SELECT format(r.valor,2,'de_DE') as valor, r.receita, DATE_FORMAT( STR_TO_DATE(r.data, '%d/%m/%Y'), '%d/%m/%Y') as data, r.id, c.categoria FROM receita r INNER JOIN categoria c ON r.categoria = c.id WHERE  c.tipo = 1 AND r.usuario = ".$usuario." GROUP BY r.id ORDER BY STR_TO_DATE(r.data, '%d/%m/%Y') DESC");
 	    return $query;
 	}
   function buscar($id){

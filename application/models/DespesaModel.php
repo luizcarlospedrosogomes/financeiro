@@ -16,7 +16,7 @@ Class DespesaModel extends CI_Model
 	// echo $this->db->affected_rows();
 	 }
  function listar($usuario){
-		$query = $this->db->query("SELECT d.valor, d.despesa, d.data, d.id, c.categoria FROM despesas d INNER JOIN categoria c ON d.categoria = c.id WHERE  c.tipo = 2 AND d.usuario = ".$usuario." GROUP BY d.id ORDER BY d.data");	    
+		$query = $this->db->query("SELECT format(d.valor,2,'de_DE') as valor, d.despesa, DATE_FORMAT( STR_TO_DATE(d.data, '%d/%m/%Y'), '%d/%m/%Y') as data, d.id, c.categoria FROM despesas d INNER JOIN categoria c ON d.categoria = c.id WHERE  c.tipo = 2 AND d.usuario = ".$usuario." GROUP BY d.id ORDER BY STR_TO_DATE(d.data, '%d/%m/%Y') DESC");	    
 		return $query;
  }
   function buscar($id){

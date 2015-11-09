@@ -7,7 +7,9 @@ class Admin extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('UsuarioModel', 'usuario');
-        $this->usuario->logado();
+		$this->usuario->logado();
+		if($this->session->userdata('id_usuario') != 2)
+			redirect('login');
     }
     
     public function index() {

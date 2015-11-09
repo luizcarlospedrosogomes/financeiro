@@ -33,6 +33,9 @@
 				<button type="submit" value="Cadastrar">Cadastrar</button>
 				<input type="hidden" value="<?php echo $usuario_id;?>" name="usuario"/>
 			</form>
+			
+			<a href="relatorio/receita">Imprimir Receita</a>	
+			
 			<table  style="width:40%" id="tab_cat_receita">
 			<caption>Receita Cadastradas</caption>
 					<tr>
@@ -70,8 +73,7 @@
 				<input type="hidden" name="usuario" value="<?php echo $usuario_id;?>"/>
 				<input type="hidden" name="tipo" value="1"/>
 			</form>
-			
-						
+				
 			<table  style="width:40%" id="tab_cat_receita">
 			<caption>Categoria Receita Cadastradas</caption>
 					<tr>
@@ -114,6 +116,9 @@
 				<button type="submit" value="Cadastrar">Cadastrar</button>
 				<input type="hidden" value="<?php echo $usuario_id;?>" name="usuario"/>
 			</form>
+			
+			<a href="relatorio/despesa">Imprimir Despesa</a>		
+			
 			<table  style="width:40%" id="tab_cat_receita">
 			<caption>Depesas Cadastradas</caption>
 					<tr>
@@ -130,7 +135,7 @@
 					
 					<tr>
 						<td><?php echo $despesas_list['data'];?></td>
-						<td><?php echo $despesas_list['categoria'];?></td>
+						<td><?php echo $despesas_list['despesa'];?></td>
 						<td><?php echo $despesas_list['valor'];?></td>
 						<td><?php echo $despesas_list['categoria'];?></td>
 						<td><a href="despesa/editar/<?php echo $despesas_list['id'];?>">Editar</a></td>
