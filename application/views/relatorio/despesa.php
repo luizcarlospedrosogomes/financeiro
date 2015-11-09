@@ -16,7 +16,7 @@
     $this->fpdf->SetTextColor(0,0,0);
     $this->fpdf->SetDrawColor(128,0,0);
     $this->fpdf->SetLineWidth(.3);
-    //$this->fpdf->SetFont('','B');
+    $this->fpdf->SetFont('','B');
     // Header
     $w = array(40, 35, 40, 45);
     for($i=0;$i<count($header);$i++)
