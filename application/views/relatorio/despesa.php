@@ -2,6 +2,7 @@
 	
 	date_default_timezone_set('America/Sao_Paulo');
 	$dataAtual = date('d/m/Y H:i');
+	//$this->fpdf->Write(5,iconv('utf-8','iso-8859-1', 'Endereço: '));
 	$this->fpdf->AddPage();
 	$this->fpdf->SetFont('Arial','B',16);
 	$this->fpdf->SetFont('Arial','B',15);
@@ -31,9 +32,9 @@
     foreach($listar_despesa->result_array() as $row)
     {
         $this->fpdf->Cell($w[0],6,$row['data'],'LR',0,'L',$fill);
-        $this->fpdf->Cell($w[1],6,$row['despesa'],'LR',0,'L',$fill);
+        $this->fpdf->Cell($w[1],6,iconv('utf-8','iso-8859-1',$row['despesa']),'LR',0,'L',$fill);
         $this->fpdf->Cell($w[2],6,$row['valor'],'LR',0,'R',$fill);
-        $this->fpdf->Cell($w[3],6,$row['categoria'],'LR',0,'R',$fill);
+        $this->fpdf->Cell($w[3],6,iconv('utf-8','iso-8859-1',$row['categoria']),'LR',0,'R',$fill);
         $this->fpdf->Ln();
         $fill = !$fill;
     }

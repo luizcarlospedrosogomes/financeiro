@@ -32,9 +32,9 @@
     foreach($listar_receita->result_array() as $row)
     {
         $this->fpdf->Cell($w[0],6,$row['data'],'LR',0,'C',$fill);
-        $this->fpdf->Cell($w[1],6,$row['receita'],'LR',0,'C',$fill);
+        $this->fpdf->Cell($w[1],6,iconv('utf-8','iso-8859-1',$row['receita']),'LR',0,'C',$fill);
         $this->fpdf->Cell($w[2],6,$row['valor'],'LR',0,'R',$fill);
-        $this->fpdf->Cell($w[3],6,$row['categoria'],'LR',0,'C',$fill);
+        $this->fpdf->Cell($w[3],6,iconv('utf-8','iso-8859-1',$row['categoria']),'LR',0,'C',$fill);
         $this->fpdf->Ln();
         $fill = !$fill;
     }

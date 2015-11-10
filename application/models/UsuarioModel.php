@@ -29,7 +29,7 @@ Class UsuarioModel extends CI_Model
 				'senha'  => $senha,
 				'status' =>1
 	 );
-	 
+	 echo "dados";
 	 $this->db->insert('usuario', $dados); 
 	 //echo $this->db->affected_rows();
  }

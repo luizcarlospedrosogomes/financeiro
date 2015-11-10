@@ -19,31 +19,23 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('senha', 'senha', 'required');
         $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
-		
-
-		//carregar model
-		$this->load->model('usuarioModel', 'usuario');
-		
+	if($nome  = $this->input->post()){
 		$nome  = $this->input->post('nome');
 		$email = $this->input->post('email');
 		$senha = $this->input->post('senha');
-		if ($this->form_validation->run() == FALSE) {
-
-	$nome  = $this->input->post('nome');
-	$email = $this->input->post('email');
-	$senha = $this->input->post('senha');
+	}
 	if ($this->form_validation->run() == FALSE) {
-
+			
 	           // echo "Erro ao insirir dados	";
         } else {
 		$this->usuario->inserir($nome, $email, $senha);
 		redirect('admin');
 		}
 	//listar usuario
-        $data['query'] = $this->usuario->listar();
+    $data['query'] = $this->usuario->listar();
 	$this->load->view('admin_view', $data);
         
-    }
+
 	}
 	public function excluir(){
 		
